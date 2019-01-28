@@ -1,0 +1,61 @@
+{% extends 'web/base.html' %}
+{% block mainbody %}
+  <div class="banner">
+    <div class="cont w1000">
+      <div class="title">
+        <h3>万般带不去</h3>
+        <h4>唯有业随身</h4>
+      </div>
+      <div class="amount">
+      </div>
+    </div>
+  </div>
+  <div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >网页模板</a></div>
+  <div class="content">
+    <div class="cont w1000">
+      <div class="title">
+          <h1>文章列表</h1>
+      </div>
+      <div class="list-item">
+          {% for v in list %}
+        <div class="item"  >
+          <div class="layui-fluid">
+            <div class="layui-row">
+              <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
+                <div class="img"><img src="../../static/pics/{{ v.filename }}" alt=""></div>
+              </div>
+              <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
+                <div class="item-cont">
+                  <h3>{{ v.title }}</h3>
+                  <h5>分类：{{ v.tag }}</h5>
+                  <p>{{ v.guide }}</p>
+                  <a href="{% url 'web_blog' v.id %}" class="go-icon"></a>
+                </div>
+            </div>
+            </div>
+           </div>
+        </div>
+          {% endfor %}
+
+      </div>
+      <div id="demo" style="text-align: center;">
+        <div class="container large">
+  <div class="pagination">
+    <ul>
+        {%for i in plist%}
+            {%if i == pindex%}
+                {{pindex}}&nbsp;&nbsp;
+            {%else%}
+                <a href="{% url 'web_index' i %}">{{i}}</a>&nbsp;&nbsp;
+            {%endif%}
+        {%endfor%}
+    </ul>
+  </div>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

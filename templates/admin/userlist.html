@@ -1,0 +1,50 @@
+{% extends 'admin/base.html' %}
+
+{% block mainbody %}
+                    <h1>
+						博客列表
+					</h1>
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+                                <th>
+                                    id
+                                </th>
+                                <th>
+                                    账号
+                                </th>
+								<th >
+									邮箱
+								</th>
+								<th >
+									电话号码
+								</th>
+                                <th >
+									操作
+								</th>
+							</tr>
+						</thead>
+                        {% for v in userlist %}
+						<tbody>
+							<tr>
+                                <td>
+									{{ v.id }}
+								</td>
+								<td>
+									{{ v.username }}
+								</td>
+								<td>
+									{{ v.email }}
+								</td>
+								<td>
+									{{ v.tel }}
+								</td>
+								<td>
+									<a href="{% url 'updateuser' v.id %}" class="view-link">修改</a>
+                                    <a href="{% url 'deleteuser' v.id %}" class="view-link">删除</a>
+								</td>
+							</tr>
+						</tbody>
+                    {% endfor %}
+                    </table>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'web/base.html' %}
+{% block mainbody %}
+    <div class="content whisper-content leacots-content details-content">
+    <div class="cont w1000">
+      <div class="whisper-list">
+        <div class="item-box">
+          <div class="review-version">
+              <div class="form-box">
+                  {% autoescape off %}
+                <div class="article-cont">
+                  <div class="title">
+                    <h3>{{ list.title }}</h3>
+                    <p class="cont-info"><span class="data">2018/08/08</span><span class="types">散文札记</span></p>
+                  </div>
+                  <p>{{ list.content }}</p>
+                  <div class="btn-box">
+                  </div>
+                </div>
+                  {% endautoescape %}
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+{% endblock %}

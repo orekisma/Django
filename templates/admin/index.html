@@ -1,0 +1,50 @@
+{% extends 'admin/base.html' %}
+
+{% block mainbody %}
+                    <h1>
+						博客列表
+					</h1>
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+                                <th>
+                                    序号
+                                </th>
+								<th width="20%">
+									标题
+								</th>
+								<th width="15%">
+									标签
+								</th>
+								<th width="50%">
+									导语
+								</th>
+								<th>
+									操作
+								</th>
+							</tr>
+						</thead>
+                        {% for v in list %}
+						<tbody>
+							<tr>
+                                <td>
+									{{ v.id }}
+								</td>
+								<td>
+									{{ v.title }}
+								</td>
+								<td>
+									{{ v.tag }}
+								</td>
+								<td>
+									{{ v.guide }}
+								</td>
+								<td>
+									<a href="{% url 'update_blog' v.id %}" class="view-link">修改</a>
+                                    <a href="{% url 'delete_blog' v.id %}" class="view-link">删除</a>
+								</td>
+							</tr>
+						</tbody>
+                    {% endfor %}
+                    </table>
+{% endblock %}

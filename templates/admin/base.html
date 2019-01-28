@@ -1,0 +1,91 @@
+{% load static from static %}
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html lang="en" class="ie6 ielt7 ielt8 ielt9"><![endif]--><!--[if IE 7 ]><html lang="en" class="ie7 ielt8 ielt9"><![endif]--><!--[if IE 8 ]><html lang="en" class="ie8 ielt9"><![endif]--><!--[if IE 9 ]><html lang="en" class="ie9"> <![endif]--><!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en"><!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<title>博客后台管理系统</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="{% static 'admin/system/css/bootstrap.min.css' %}" rel="stylesheet">
+		<link href="{% static 'admin/system/css/bootstrap-responsive.min.css' %}" rel="stylesheet">
+		<link href="{% static 'admin/system/css/site.css' %}" rel="stylesheet">
+        <script src="{% static '/kindeditor/kindeditor-all-min.js' %}"></script>
+        <script src="{% static '/kindeditor/lang/zh-CN.js' %}"></script>
+        <script src="{% static '/kindeditor/themes/default/default.css' %}"></script>
+		<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	</head>
+	<body>
+		<div class="container">
+			<div class="navbar">
+				<div class="navbar-inner">
+					<div class="container">
+						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="#">博客</a>
+						<div class="nav-collapse">
+							<ul class="nav pull-right">
+								<li>
+									<a >{{ request.session.user }}</a>
+								</li>
+								<li>
+									<a href="{% url 'loginout' %}">退出</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span3">
+					<div class="well" style="padding: 8px 0;">
+						<ul class="nav nav-list">
+							<li class="nav-header">
+								博客管理
+							</li>
+							<li class="active">
+								<a href="{% url 'blog_index' %}"><i class="icon-white icon-home"></i>博客列表</a>
+							</li>
+							<li>
+								<a href="{% url 'add_blog' %}"><i class="icon-folder-open"></i>添加博客</a>
+							</li>
+							<li class="nav-header">
+								用户管理
+							</li>
+							<li>
+								<a href="{% url 'userlist' %}"><i class="icon-picture"></i>用户列表</a>
+							</li>
+							<li>
+								<a href="{% url 'adduser' %}"><i class="icon-stop"></i> 添加用户</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="span9">
+                {% block mainbody %}
+                {% endblock %}
+                </div>
+
+		</div>
+		<script src="{% static 'admin/system/js/jquery.min.js' %}"></script>
+		<script src="{% static 'admin/system/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'admin/system/js/site.js' %}"></script>
+        <script>
+        KindEditor.ready(function (k) {
+            window.editor = k.create('#editor_id',{
+                resizeType:1,
+                allowPreviewEmoticons : false,
+                allowImageRemote : false,
+                {#处理url#}
+                uploadJson : '/upload/kindeditor',
+
+            });
+        })
+    </script>
+
+
+        <script type="text/javascript">
+                function validForm(fm){
+                   fm.action = fm.action + "?name=" + fm['name'].value;
+                   return true;
+                }
+        </script>
+	</body>
+</html>
